@@ -5,13 +5,23 @@ what's actually running a project, beyond the generic "Next.js, Vercel, Prisma, 
 API" line.
 
 It documents the layer most stack docs skip: RAG pipelines, fine-tuning, embeddings, vector
-databases, agent orchestration, evals/observability and it always asks who did the prompt
+databases, agent orchestration, evals/observability — and it always asks who did the prompt
 engineering and who optimized it, because that's intellectual work that never shows up in a
 dependency scan.
 
 ## Author
 
 Built by [Mojeeb Titilayo](https://mojeeb.xyz) ([BlindspotLab](https://blindspotlab.xyz)).
+
+## About
+
+**Mojeeb Titilayo** is an AI Product Engineer and Web3 strategist based in Nigeria, building
+under the handle [@tmojeeb](https://x.com/tmojeeb). 12+ years in Web2 marketing and 4+ years in
+Web3 strategy, self-taught developer since 2014.
+
+**[BlindspotLab](https://blindspotlab.xyz)** is Mojeeb's AI-native productized build studio —
+*"You have the idea. We ship the product."* It has shipped 30+ production products across AI,
+SaaS, and Web3.
 
 ## What it produces
 
