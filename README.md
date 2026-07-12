@@ -34,7 +34,7 @@ npx stackbrief --global   # installs into ~/.claude/skills (every project)
 Or, straight from GitHub without publishing to npm at all:
 
 ```bash
-npx github:<your-username>/stackbrief
+npx github:mojeebdev/stackbrief
 ```
 
 ### Claude Code / Claude Desktop (manual)
@@ -42,7 +42,7 @@ npx github:<your-username>/stackbrief
 Drop the `stackbrief/` folder into your skills directory:
 
 ```bash
-git clone https://github.com/<your-username>/stackbrief.git
+git clone https://github.com/mojeebdev/stackbrief.git
 cp -r stackbrief/stackbrief ~/.claude/skills/stackbrief
 ```
 
