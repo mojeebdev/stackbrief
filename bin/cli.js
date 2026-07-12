@@ -42,9 +42,9 @@ function help() {
   console.log(`stackbrief — install the stackbrief Claude Skill
 
 Usage:
-  npx stackbrief            Install into ./.claude/skills (this project)
-  npx stackbrief --global   Install into ~/.claude/skills (all projects)
-  npx stackbrief help       Show this message
+  npx @blindspotlab/stackbrief            Install into ./.claude/skills (this project)
+  npx @blindspotlab/stackbrief --global   Install into ~/.claude/skills (all projects)
+  npx @blindspotlab/stackbrief help       Show this message
 `);
 }
 

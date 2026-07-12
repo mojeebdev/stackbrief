@@ -1,6 +1,6 @@
 {
   "name": "@blindspotlab/stackbrief",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Installs the stackbrief Claude Skill — generates stacks.md, a real technical stack brief (RAG, fine-tuning, agents, evals, prompt engineering attribution) beyond the generic framework list.",
   "bin": {
     "stackbrief": "bin/cli.js"
