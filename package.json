@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<your-username>/stackbrief.git"
+    "url": "https://github.com/mojeebdev/stackbrief.git"
   },
-  "homepage": "https://github.com/<your-username>/stackbrief#readme"
+  "homepage": "https://github.com/mojeebdev/stackbrief#readme"
 }
