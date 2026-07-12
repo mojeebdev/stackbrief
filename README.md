@@ -5,7 +5,7 @@ what's actually running a project, beyond the generic "Next.js, Vercel, Prisma, 
 API" line.
 
 It documents the layer most stack docs skip: RAG pipelines, fine-tuning, embeddings, vector
-databases, agent orchestration, evals/observability — and it always asks who did the prompt
+databases, agent orchestration, evals/observability and it always asks who did the prompt
 engineering and who optimized it, because that's intellectual work that never shows up in a
 dependency scan.
 
@@ -24,11 +24,9 @@ the exact shape.
 
 ### npx (fastest)
 
-Once published to npm:
-
 ```bash
-npx stackbrief            # installs into ./.claude/skills (this project only)
-npx stackbrief --global   # installs into ~/.claude/skills (every project)
+npx @blindspotlab/stackbrief            # installs into ./.claude/skills (this project only)
+npx @blindspotlab/stackbrief --global   # installs into ~/.claude/skills (every project)
 ```
 
 Or, straight from GitHub without publishing to npm at all:
