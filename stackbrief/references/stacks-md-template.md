@@ -1,18 +1,18 @@
 # stacks.md Template
 
-Fill in only the sections that apply — omit a layer entirely if the project has no signal for
+Fill in only the sections that apply - omit a layer entirely if the project has no signal for
 it, rather than leaving a section with "N/A." Every entry needs Purpose + Technology +
 Configuration at minimum; add "Why this choice" where the reasoning isn't obvious from the tech
 name alone.
 
 ```markdown
-# Stack Brief — <Project Name>
+# Stack Brief - <Project Name>
 
 Last updated: <date>
 
 ## Overview
 
-<2-4 sentences: what the product is and the shape of the architecture. Not marketing copy —
+<2-4 sentences: what the product is and the shape of the architecture. Not marketing copy -
 describe what's actually running.>
 
 ## Frontend
@@ -44,7 +44,7 @@ describe what's actually running.>
 ## Blockchain / Web3 <omit if not applicable>
 
 - **Chain(s):** <name>
-- **Contracts:** <contract name — deployed address — purpose>
+- **Contracts:** <contract name - deployed address - purpose>
 - **Client library:** <ethers/viem/wagmi/etc.>
 
 ## AI Model Layer
@@ -52,7 +52,7 @@ describe what's actually running.>
 - **Provider(s):** <e.g. Anthropic, OpenAI>
 - **Model(s):** <exact model string(s), not just "Claude">
 - **Routing:** <direct SDK / OpenRouter / custom multi-provider layer>
-- **Why this choice:** <optional — cost, latency, context window, capability reasoning>
+- **Why this choice:** <optional - cost, latency, context window, capability reasoning>
 
 ## RAG Pipeline <omit if not applicable>
 
@@ -68,8 +68,8 @@ describe what's actually running.>
 - **Purpose:** <what the fine-tune is for>
 - **Base model:** <name>
 - **Method:** <LoRA / QLoRA / full fine-tune / DPO / RLHF>
-- **Training data:** <source/size, described at a high level — no proprietary data dumped here>
-- **Eval results:** <if measured — what improved and by how much>
+- **Training data:** <source/size, described at a high level - no proprietary data dumped here>
+- **Eval results:** <if measured - what improved and by how much>
 
 ## Agents / Orchestration <omit if not applicable>
 
@@ -86,8 +86,8 @@ describe what's actually running.>
 
 ## Prompt Engineering
 
-- **Prompt Engineering by:** <name/team — who wrote the original prompts/system instructions>
-- **Optimized by:** <name/team — who iterated on them; state explicitly if same as above>
-- **Optimization notes:** <what changed during optimization — e.g. token reduction, few-shot
-  curation, eval-driven revisions — optional but strengthens the brief>
+- **Prompt Engineering by:** <name/team - who wrote the original prompts/system instructions>
+- **Optimized by:** <name/team - who iterated on them; state explicitly if same as above>
+- **Optimization notes:** <what changed during optimization - e.g. token reduction, few-shot
+  curation, eval-driven revisions - optional but strengthens the brief>
 ```
