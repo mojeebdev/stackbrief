@@ -1,0 +1,33 @@
+{
+  "name": "@blindspotlab/stackbrief",
+  "version": "1.0.0",
+  "description": "Installs the stackbrief Claude Skill — generates stacks.md, a real technical stack brief (RAG, fine-tuning, agents, evals, prompt engineering attribution) beyond the generic framework list.",
+  "bin": {
+    "stackbrief": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "stackbrief",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.7.0"
+  },
+  "keywords": [
+    "claude",
+    "claude-skill",
+    "ai-agent",
+    "tech-stack",
+    "rag",
+    "prompt-engineering",
+    "documentation"
+  ],
+  "author": "Mojeeb Titilayo (BlindspotLab) <https://blindspotlab.xyz>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<your-username>/stackbrief.git"
+  },
+  "homepage": "https://github.com/<your-username>/stackbrief#readme"
+}

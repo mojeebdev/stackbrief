@@ -22,12 +22,27 @@ the exact shape.
 
 ## Install
 
-### Claude Code / Claude Desktop (Skills)
+### npx (fastest)
+
+Once published to npm:
+
+```bash
+npx stackbrief            # installs into ./.claude/skills (this project only)
+npx stackbrief --global   # installs into ~/.claude/skills (every project)
+```
+
+Or, straight from GitHub without publishing to npm at all:
+
+```bash
+npx github:<your-username>/stackbrief
+```
+
+### Claude Code / Claude Desktop (manual)
 
 Drop the `stackbrief/` folder into your skills directory:
 
 ```bash
-git clone https://github.com/mojeebdev/stackbrief.git
+git clone https://github.com/<your-username>/stackbrief.git
 cp -r stackbrief/stackbrief ~/.claude/skills/stackbrief
 ```
 
