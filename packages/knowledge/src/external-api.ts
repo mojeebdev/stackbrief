@@ -9,7 +9,6 @@ export interface OutboundHttpApi {
 }
 
 const KNOWN_HOSTS: Record<string, string> = {
-  "api.paystack.co": "Paystack",
   "api.stripe.com": "Stripe",
   "api.openai.com": "OpenAI",
   "api.anthropic.com": "Anthropic",
@@ -51,10 +50,16 @@ function fromUrl(value: string, file: FileNode, evidence: SourceLocation[]): Out
   try {
     const host = new URL(value).hostname.toLowerCase();
     if (host === "localhost" || host === "127.0.0.1") return undefined;
-    return { name: KNOWN_HOSTS[host] ?? host, host, projectId: file.projectId, adapterFileId: file.id, evidence };
+    return { name: KNOWN_HOSTS[host] ?? providerNameFromHost(host), host, projectId: file.projectId, adapterFileId: file.id, evidence };
   } catch {
     return undefined;
   }
+}
+
+function providerNameFromHost(host: string): string {
+  const labels = host.split(".");
+  const provider = labels[0] === "api" && labels[1] ? labels[1] : labels[0];
+  return provider.split(/[-_]/).filter(Boolean).map((part) => `${part[0].toUpperCase()}${part.slice(1)}`).join(" ");
 }
 
 function deduplicate(items: OutboundHttpApi[]): OutboundHttpApi[] {

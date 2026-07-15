@@ -52,13 +52,13 @@ test("shows a static outbound HTTP provider through its adapter file", () => {
     fileSystem: new MemoryFileSystem({
       "package.json": JSON.stringify({ name: "payments", dependencies: { next: "1" } }),
       "tsconfig.json": JSON.stringify({ compilerOptions: { paths: { "@/*": ["./src/*"] } } }),
-      "src/app/api/paystack/initialize/route.ts": "import { initialize } from '@/lib/paystack/client';\nexport async function POST() { return initialize(); }",
-      "src/lib/paystack/client.ts": "const PAYSTACK_BASE = 'https://api.paystack.co';\nexport const initialize = () => fetch(`${PAYSTACK_BASE}/transaction/initialize`);",
+      "src/app/api/checkout/route.ts": "import { startCheckout } from '@/lib/billing/client';\nexport async function POST() { return startCheckout(); }",
+      "src/lib/billing/client.ts": "const BILLING_BASE = 'https://billing.example.test';\nexport const startCheckout = () => fetch(`${BILLING_BASE}/checkout/start`);",
     }),
   });
-  const brief = createFileChangeBrief(report, "src/app/api/paystack/initialize/route.ts");
+  const brief = createFileChangeBrief(report, "src/app/api/checkout/route.ts");
   assert.ok(brief);
-  assert.deepEqual(brief.relevantArchitecture.externalApis.map(({ label, evidence }) => ({ label, evidence })), [{ label: "Paystack via src/lib/paystack/client.ts", evidence: [{ file: "src/lib/paystack/client.ts", line: 1 }, { file: "src/lib/paystack/client.ts", line: 2 }] }]);
+  assert.deepEqual(brief.relevantArchitecture.externalApis.map(({ label, evidence }) => ({ label, evidence })), [{ label: "Billing via src/lib/billing/client.ts", evidence: [{ file: "src/lib/billing/client.ts", line: 1 }, { file: "src/lib/billing/client.ts", line: 2 }] }]);
 });
 
 test("does not cite an unrelated route for a project-level HTTP service", () => {

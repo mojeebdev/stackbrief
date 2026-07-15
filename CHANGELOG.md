@@ -2,6 +2,14 @@
 
 All notable changes to StackBrief are documented here.
 
+## 1.1.1 — 2026-07-15
+
+### Changed
+
+- Replaced product-specific examples with neutral checkout and billing fixtures across the website, documentation, and tests.
+- Generalized outbound HTTP provider labels for unrecognized hosts.
+- Added a rendered Remotion walkthrough to the product website.
+
 ## 1.1.0 — 2026-07-15
 
 ### Added
@@ -12,7 +20,7 @@ All notable changes to StackBrief are documented here.
 - `stackbrief brief --file <path>` for source-cited pre-change briefs.
 - `stackbrief brief --staged` for a merged brief of staged Git changes.
 - TypeScript path alias resolution and framework-aware Next.js App Router route detection.
-- Static outbound HTTP provider detection, including evidence for adapters such as Paystack.
+- Static outbound HTTP provider detection, including adapters assembled from URL constants.
 - Provider-neutral agent workflow installation through `stackbrief agent install`.
 - Independent Next.js product website in `apps/web`.
 

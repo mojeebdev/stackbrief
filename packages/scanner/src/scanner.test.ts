@@ -37,11 +37,11 @@ test("resolves TypeScript aliases and extracts Next.js App Router routes", () =>
     fileSystem: new MemoryFileSystem({
       "package.json": JSON.stringify({ name: "demo", dependencies: { next: "1", stripe: "1" } }),
       "tsconfig.json": JSON.stringify({ compilerOptions: { paths: { "@/*": ["./src/*"] } } }),
-      "src/app/api/paystack/initialize/route.ts": "import Stripe from '@/lib/paystack/client';\nexport async function POST() { return Stripe; }",
-      "src/lib/paystack/client.ts": "import Stripe from 'stripe';\nexport default Stripe;",
+      "src/app/api/checkout/route.ts": "import billingClient from '@/lib/billing/client';\nexport async function POST() { return billingClient; }",
+      "src/lib/billing/client.ts": "export default { start: () => undefined };",
     }),
   });
-  assert.deepEqual(report.inventory.apis, [{ path: "/api/paystack/initialize", method: "POST", framework: "nextjs-app-router", evidence: [{ file: "src/app/api/paystack/initialize/route.ts", line: 2 }] }]);
-  assert.equal(report.knowledge.imports.find(({ specifier }) => specifier === "@/lib/paystack/client")?.targetFileId, "file:src/lib/paystack/client.ts");
+  assert.deepEqual(report.inventory.apis, [{ path: "/api/checkout", method: "POST", framework: "nextjs-app-router", evidence: [{ file: "src/app/api/checkout/route.ts", line: 2 }] }]);
+  assert.equal(report.knowledge.imports.find(({ specifier }) => specifier === "@/lib/billing/client")?.targetFileId, "file:src/lib/billing/client.ts");
   assert.equal(report.knowledge.routes[0].framework, "nextjs-app-router");
 });
