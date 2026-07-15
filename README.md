@@ -1,101 +1,135 @@
-# stackbrief
+# StackBrief
 
-A Claude Skill (and general agent-readable spec) that writes `stacks.md` - a technical brief of
-what's actually running a project, beyond the generic "Next.js, Vercel, Prisma, Supabase, Claude
-API" line.
+> The architectural brief before a code change.
 
-It documents the layer most stack docs skip: RAG pipelines, fine-tuning, embeddings, vector
-databases, agent orchestration, evals/observability - and it always asks who did the prompt
-engineering and who optimized it, because that's intellectual work that never shows up in a
-dependency scan.
+[GitHub](https://github.com/mojeebdev/stackbrief) · [npm](https://www.npmjs.com/package/@blindspotlab/stackbrief) · [Launch post](https://x.com/tmojeeb/status/2076402340777673176?s=20)
 
-## Author
+StackBrief is an open-source, local-first CLI for understanding a repository before changing it. It turns source code, imports, routes, services, databases, and external APIs into a source-cited architectural brief—so a developer or coding agent can see the shape of a change before touching the code.
 
-Built by [Mojeeb Titilayo](https://mojeeb.xyz) ([BlindspotLab](https://blindspotlab.xyz)).
+It works without an API key, hosted AI, embeddings, or a vector database. Static analysis provides evidence; developers retain judgement over runtime, product, and operational decisions.
 
-## About
-
-**Mojeeb Titilayo** is an AI Product Engineer and Web3 strategist based in Nigeria, building
-under the handle [@tmojeeb](https://x.com/tmojeeb). 12+ years in Web2 marketing and 4+ years in
-Web3 strategy, self-taught developer since 2014.
-
-**[BlindspotLab](https://blindspotlab.xyz)** is Mojeeb's AI-native productized build studio -
-*"You have the idea. We ship the product."* It has shipped 30+ production products across AI,
-SaaS, and Web3.
-
-## What it produces
-
-A `stacks.md` file at your project root, structured by layer (frontend, backend, data, infra,
-AI model layer, RAG, fine-tuning, agents, evals, and prompt engineering attribution). See
-[`stackbrief/references/stacks-md-template.md`](stackbrief/references/stacks-md-template.md) for
-the exact shape.
-
-## Install
-
-### npx (fastest)
+## Start here
 
 ```bash
-npx @blindspotlab/stackbrief            # installs into ./.claude/skills (this project only)
-npx @blindspotlab/stackbrief --global   # installs into ~/.claude/skills (every project)
+# Create the canonical machine-readable repository model
+npx @blindspotlab/stackbrief scan
+
+# Read the architecture around a planned file change
+npx @blindspotlab/stackbrief brief --file src/billing/refunds.ts
+
+# Review the architecture around a real staged change
+npx @blindspotlab/stackbrief brief --staged
 ```
 
-Or, straight from GitHub without publishing to npm at all:
+`brief --file` is the everyday workflow. Use it when you have identified the most likely file to change and want evidence before your first edit. Use `brief --staged` only after staging a real change; it is not a reason to create artificial Git changes.
+
+## What it gives you
+
+`stackbrief scan` writes `stackbrief.json`, StackBrief’s canonical, versioned repository representation. It contains source evidence for:
+
+- Projects, directories, files, imports, and exports
+- Languages, package managers, frameworks, entry points, and environment variables
+- Routes, services, databases, dependencies, and external APIs
+- Build, test, worker, and queue signals
+
+`stackbrief brief` turns those facts into a concise pre-change brief:
+
+- The selected file and relevant route/service boundary
+- Reached local files and direct dependents
+- Database and external API integrations
+- Constraints, test targets, and static unknowns
+- File paths and line citations wherever practical
+
+StackBrief is framework-aware but framework-neutral. For example, it detects Express-style routes and Next.js App Router handlers without assuming that either framework is universal.
+
+See [CHANGE_BRIEF.md](CHANGE_BRIEF.md) for the Alpha contract and static-analysis boundaries, [STACKBRIEF_SCHEMA.md](STACKBRIEF_SCHEMA.md) for the `stackbrief.json` contract, and [REPOSITORY_INTELLIGENCE.md](REPOSITORY_INTELLIGENCE.md) for the typed query engine.
+
+## Bring your own agent
+
+StackBrief’s agent workflow is separate from any model or vendor. It gives an agent instructions to read a StackBrief brief before planning or implementing a change.
 
 ```bash
-npx github:mojeebdev/stackbrief
+# Install the pre-change workflow in Claude's conventional local skill directory
+stackbrief agent install --target claude
+
+# Install it into the skills/instructions directory used by any other agent
+stackbrief agent install --target custom --path .agents/skills
+
+# Inspect the destination without writing files
+stackbrief agent install --path .agents/skills --dry-run
+
+# Print the portable instructions for manual or system-prompt setup
+stackbrief agent print
 ```
 
-### Claude Code / Claude Desktop (manual)
+The custom installer creates `<path>/stackbrief/SKILL.md`. It never auto-detects an agent, edits an agent’s configuration silently, or makes a network request.
 
-Drop the `stackbrief/` folder into your skills directory:
+## Website
+
+The product website is an independent Next.js App Router application in [`apps/web`](apps/web). It has its own dependencies, lockfile, build, metadata, Open Graph image, sitemap, and deployment path; it is deliberately not shipped in the npm CLI package.
 
 ```bash
-git clone https://github.com/mojeebdev/stackbrief.git
-cp -r stackbrief/stackbrief ~/.claude/skills/stackbrief
+cd apps/web
+npm install
+npm run dev
 ```
 
-Or, for a single project, place it in that project's `.claude/skills/` directory instead of the
-global one.
+For Vercel, import this repository and set **Root Directory** to `apps/web`. The intended production home is `stackbrief.peerfix.dev`.
 
-### Claude.ai (Skills)
+## Architecture
 
-Zip the `stackbrief/` folder (the inner one, containing `SKILL.md`) and upload it via
-Settings -> Capabilities -> Skills -> Upload skill.
+StackBrief is structured so the fast local foundation stays useful whether or not AI is added later:
 
-### Any other coding agent
+```text
+packages/
+  cli/            Commands and compatibility routing
+  core/           Shared filesystem and Git utilities
+  scanner/        Offline repository discovery
+  knowledge/      Canonical source-cited repository model
+  intelligence/   Typed graph queries and traversal
+  brief/          Pre-change and staged-change brief rendering
+  types/          Stable public domain contracts
 
-`SKILL.md` is plain Markdown with YAML frontmatter and no Claude-specific tool calls in its
-instructions - it's readable as a standalone spec. Point any agent that can read files, run
-shell commands, and write files at `stackbrief/SKILL.md` and tell it to follow the workflow.
-It works as-is with Claude Code, Cowork, Cursor, or a custom agent loop; adapt the "how to ask
-the user a question" mechanism to whatever your agent's interface supports.
-
-## Use
-
-In an agent terminal/chat with the skill installed:
-
-```
-Use the stackbrief skill to document this codebase's stack.
+apps/
+  web/            Independent Next.js product home
 ```
 
-The skill will:
-1. Scan your dependency manifests, configs, and imports to draft the real stack - not just the
-generic layer
-2. Ask you to fill any gaps the scan couldn't determine
-3. **Always** ask who did the prompt engineering and who optimized it - this step never gets
-   skipped or auto-inferred from commit history
-4. Write (or update) `stacks.md` at your project root
+Read [ARCHITECTURE.md](ARCHITECTURE.md) for migration, compatibility, and future milestones. The current CLI does not make OpenAI, Anthropic, or other hosted AI calls.
 
-Re-run it any time the stack changes - it reads the existing `stacks.md` first and updates it
+## Legacy `stacks.md` skill
 
-## Why this exists
+StackBrief began as `stack.md`, a Claude-compatible skill for producing a deeper `stacks.md` document. That workflow remains available for existing users and is intentionally preserved:
 
-Most tech-stack write-ups stop at the framework and the database, as if the AI layer - RAG
-design, fine-tuning decisions, agent architecture, and the prompt engineering itself - isn't real
-engineering work. It usually is, it's usually the hardest part of the build, and it's usually the
-part nobody gets credited for. `stackbrief` makes documenting it (and crediting it) the default,
-not an afterthought.
+```bash
+# Project-local legacy Claude skill installation
+npx @blindspotlab/stackbrief
+
+# Global legacy Claude skill installation
+npx @blindspotlab/stackbrief --global
+```
+
+The original skill source and references remain in [`stackbrief/`](stackbrief/). It is a complementary documentation workflow, not the definition of the current product.
+
+## Origin
+
+StackBrief began as a developer skill called `stack.md`. Repository work made the larger problem obvious: READMEs drift, architecture lives in people’s heads, and the knowledge needed before a change is scattered through the system.
+
+The mission is simple: **help developers understand software systems faster.**
+
+The first public release evolved during OpenAI Build Week 2026. It is a genesis chapter, not the final destination.
+
+## Contributing
+
+Issues, framework adapters, detectors, tests, and clearer evidence are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md), start with the [GitHub repository](https://github.com/mojeebdev/stackbrief), or contact [hello@mojeeb.xyz](mailto:hello@mojeeb.xyz) with an idea or contribution proposal.
+
+If StackBrief earns a place in your workflow, please star the repository and leave a review on [npm](https://www.npmjs.com/package/@blindspotlab/stackbrief).
+
+## Built by
+
+StackBrief is built by [Mojeeb Titilayo](https://mojeeb.xyz), an AI Product Engineer and founder of [BlindspotLab](https://blindspotlab.xyz)—a historian turned builder who has shipped 30+ products across AI, developer tools, SaaS, and Web3.
+
+For local-analysis privacy and vulnerability reporting, see [SECURITY.md](SECURITY.md).
 
 ## License
 
-MIT - see [LICENSE](LICENSE).
+[MIT](LICENSE)

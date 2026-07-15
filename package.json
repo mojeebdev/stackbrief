@@ -1,27 +1,46 @@
 {
   "name": "@blindspotlab/stackbrief",
-  "version": "1.0.4",
-  "description": "Installs the stackbrief Claude Skill - generates stacks.md, a real technical stack brief (RAG, fine-tuning, agents, evals, prompt engineering attribution) beyond the generic framework list.",
+  "version": "1.1.0",
+  "description": "Offline repository intelligence CLI for source-cited architectural briefs before code changes.",
   "bin": {
     "stackbrief": "bin/cli.js"
   },
   "files": [
-    "bin",
+    "bin/cli.js",
+    "agent",
     "stackbrief",
+    "dist",
+    "ARCHITECTURE.md",
+    "STACKBRIEF_SCHEMA.md",
+    "REPOSITORY_INTELLIGENCE.md",
+    "CHANGE_BRIEF.md",
     "README.md",
     "LICENSE"
   ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:release": "node scripts/build-release.cjs",
+    "test": "npm run build && node --test bin/cli.test.js dist/packages/core/src/git.test.js dist/packages/scanner/src/scanner.test.js dist/packages/scanner/src/frameworks/nextjs.test.js dist/packages/knowledge/src/knowledge.test.js dist/packages/knowledge/src/module-resolution.test.js dist/packages/knowledge/src/external-api.test.js dist/packages/intelligence/src/repository-intelligence.test.js dist/packages/intelligence/src/repository-intelligence.integration.test.js dist/packages/brief/src/change-brief.test.js dist/packages/cli/src/index.test.js",
+    "test:package": "node scripts/package-smoke.cjs",
+    "prepack": "npm run build:release"
+  },
   "engines": {
     "node": ">=16.7.0"
   },
+  "devDependencies": {
+    "@types/node": "^16.18.0",
+    "typescript": "^5.8.3"
+  },
   "keywords": [
-    "claude",
-    "claude-skill",
+    "repository-intelligence",
+    "architectural-brief",
+    "change-impact",
+    "static-analysis",
+    "developer-tools",
+    "codebase",
     "ai-agent",
-    "tech-stack",
-    "rag",
-    "prompt-engineering",
-    "documentation"
+    "claude-skill",
+    "open-source"
   ],
   "author": "Mojeeb Titilayo (https://mojeeb.xyz), BlindspotLab (https://blindspotlab.xyz)",
   "license": "MIT",
@@ -29,5 +48,5 @@
     "type": "git",
     "url": "https://github.com/mojeebdev/stackbrief.git"
   },
-  "homepage": "https://github.com/mojeebdev/stackbrief#readme"
+  "homepage": "https://stackbrief.peerfix.dev"
 }
