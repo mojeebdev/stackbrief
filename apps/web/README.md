@@ -28,7 +28,7 @@ For production, point `stackbrief.peerfix.dev` at the resulting Vercel project. 
 Before deployment, confirm that:
 
 - The canonical product statement and homepage hero retain their distinct roles.
-- The founder profile uses [@MojeebMotion](https://x.com/MojeebMotion); the original launch-post URL remains unchanged.
+- The founder profile uses [@MojeebMotion](https://x.com/MojeebMotion), and the public launch-post link points to the current StackBrief announcement.
 - External links use safe `rel` attributes and visible copy explains their destination.
 - Keyboard focus remains visible, media has a text fallback, and reduced-motion preferences are respected.
 - No sample output, screenshots, or public pages reveal source code, environment values, or private repository data.

@@ -5,7 +5,7 @@ import { OriginArtwork } from "../components/origin-artwork";
 
 const GITHUB = "https://github.com/mojeebdev/stackbrief";
 const NPM = "https://www.npmjs.com/package/@blindspotlab/stackbrief";
-const ORIGIN_POST = "https://x.com/tmojeeb/status/2076402340777673176?s=20";
+const ORIGIN_POST = "https://x.com/MojeebMotion/status/2078447946782163291?s=20";
 const FOUNDER_X = "https://x.com/MojeebMotion";
 
 function ExternalArrow() {

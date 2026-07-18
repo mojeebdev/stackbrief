@@ -7,7 +7,7 @@ All notable changes to StackBrief are documented here.
 ### Changed
 
 - Standardized public product language around: “The architectural brief before a code change.”
-- Updated StackBrief’s public X profile reference to [@MojeebMotion](https://x.com/MojeebMotion), while preserving the original launch-post URL.
+- Updated StackBrief’s public X profile reference to [@MojeebMotion](https://x.com/MojeebMotion).
 - Expanded the README, architecture notes, contributor guidance, and website documentation to describe StackBrief’s local-first, evidence-led, canonical-knowledge approach.
 
 ### Improved
