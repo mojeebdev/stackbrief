@@ -1,6 +1,13 @@
 # StackBrief web
 
-The independent Next.js home for StackBrief. It is intentionally separate from the npm CLI package.
+The independent Next.js home for StackBrief. It explains the product, documents the local-first workflow, and links developers to the public CLI package. It is intentionally separate from the npm CLI package and never receives repository analysis data.
+
+The website uses two complementary pieces of product language:
+
+- **Product statement:** “The architectural brief before a code change.”
+- **Homepage hero:** “Know the shape of a change before you make it.”
+
+The first names the product; the second describes the developer outcome. Do not merge or replace either without a deliberate product decision.
 
 ## Development
 
@@ -14,4 +21,14 @@ npm run dev
 
 Import this repository into Vercel and set **Root Directory** to `apps/web`.
 
-For production, point `stackbrief.peerfix.dev` at the resulting Vercel project. The site has static metadata, an Open Graph image, `robots.txt`, and a sitemap ready for deployment.
+For production, point `stackbrief.peerfix.dev` at the resulting Vercel project. The site has static metadata, JSON-LD software metadata, an Open Graph image, `robots.txt`, and a sitemap ready for deployment.
+
+## Content and accessibility checks
+
+Before deployment, confirm that:
+
+- The canonical product statement and homepage hero retain their distinct roles.
+- The founder profile uses [@MojeebMotion](https://x.com/MojeebMotion); the original launch-post URL remains unchanged.
+- External links use safe `rel` attributes and visible copy explains their destination.
+- Keyboard focus remains visible, media has a text fallback, and reduced-motion preferences are respected.
+- No sample output, screenshots, or public pages reveal source code, environment values, or private repository data.

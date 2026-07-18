@@ -22,6 +22,19 @@ npm run build
 - Add focused tests for framework detectors, resolver behavior, knowledge relations, and brief output.
 - Do not silently infer business intent from code. Report observable facts and static unknowns separately.
 - Keep the CLI and `apps/web` independently buildable.
+- Treat documentation as implementation: review the README, CLI examples, architecture notes, schema notes, website copy, and onboarding guidance when behavior changes.
+
+## Release discipline
+
+Every meaningful public CLI release must be documented before it is tagged or published.
+
+1. Select the semantic version that matches the shipped compatibility change.
+2. Update `package.json`, `package-lock.json`, and `CHANGELOG.md` together.
+3. Prepare a versioned GitHub Release body with **Added**, **Changed**, **Improved**, **Fixed**, **Breaking Changes**, and **Migration Notes** sections. Write `None` where a section does not apply; do not imply a change that did not ship.
+4. Review documentation and examples against the released behavior.
+5. Run the CLI test suite, package smoke test, and independent website build.
+
+The published CLI package version is StackBrief’s public release contract. Private website or demo workspace metadata does not imply a separate npm release.
 
 ## Where to help
 

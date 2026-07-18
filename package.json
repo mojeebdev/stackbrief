@@ -1,7 +1,7 @@
 {
   "name": "@blindspotlab/stackbrief",
-  "version": "1.1.1",
-  "description": "Offline repository intelligence CLI for source-cited architectural briefs before code changes.",
+  "version": "1.1.2",
+  "description": "The architectural brief before a code change. Offline, source-cited repository intelligence.",
   "bin": {
     "stackbrief": "bin/cli.js"
   },
