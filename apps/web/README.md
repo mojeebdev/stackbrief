@@ -9,6 +9,12 @@ The website uses two complementary pieces of product language:
 
 The first names the product; the second describes the developer outcome. Do not merge or replace either without a deliberate product decision.
 
+## Public metrics
+
+The hero can show two public, source-linked credibility signals: GitHub stars and npm downloads since StackBrief launched on 2026-07-12. They are fetched server-side and cached for one hour, so the page never exposes a token or depends on client-side requests. If either public API is unavailable or rate-limited, that one metric is omitted; the homepage still renders normally.
+
+The npm label deliberately says **downloads since launch**. npm's download endpoint reports a requested date range, so StackBrief does not present it as an ambiguous all-time total.
+
 ## Development
 
 ```bash

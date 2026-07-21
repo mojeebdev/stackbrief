@@ -2,6 +2,12 @@
 
 All notable changes to StackBrief are documented here.
 
+## Unreleased
+
+### Added
+
+- The product website hero now displays public, source-linked GitHub stars and npm downloads since StackBrief launched. Metrics refresh hourly, remain token-free, and disappear individually rather than making the page fail when a provider is unavailable.
+
 ## 1.1.2 — 2026-07-18
 
 ### Changed

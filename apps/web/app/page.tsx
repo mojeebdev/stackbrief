@@ -2,17 +2,70 @@ import { BrandMark } from "../components/brand-mark";
 import { CopyButton } from "../components/copy-button";
 import { FieldMap } from "../components/field-map";
 import { OriginArtwork } from "../components/origin-artwork";
+import {
+  getRepositoryMetrics,
+  type RepositoryMetrics,
+} from "../lib/repository-metrics";
 
 const GITHUB = "https://github.com/mojeebdev/stackbrief";
 const NPM = "https://www.npmjs.com/package/@blindspotlab/stackbrief";
 const ORIGIN_POST = "https://x.com/MojeebMotion/status/2078447946782163291?s=20";
 const FOUNDER_X = "https://x.com/MojeebMotion";
 
+// Next requires route-segment values to be statically analyzable literals.
+export const revalidate = 3600;
+
 function ExternalArrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
-export default function HomePage() {
+function formatCount(value: number): string {
+  return new Intl.NumberFormat("en-US").format(value);
+}
+
+function HeroMetrics({ metrics }: { metrics: RepositoryMetrics }) {
+  const hasMetrics =
+    metrics.githubStars !== undefined ||
+    metrics.npmDownloadsSinceLaunch !== undefined;
+
+  if (!hasMetrics) return null;
+
+  return (
+    <div className="hero-metrics" aria-label="Public StackBrief repository metrics">
+      <div className="hero-metric-list">
+        {metrics.githubStars !== undefined ? (
+          <a
+            className="hero-metric"
+            href={GITHUB}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${formatCount(metrics.githubStars)} GitHub stars. View the StackBrief repository.`}
+          >
+            <strong>{formatCount(metrics.githubStars)}</strong>
+            <span>GitHub stars</span>
+          </a>
+        ) : null}
+        {metrics.npmDownloadsSinceLaunch !== undefined ? (
+          <a
+            className="hero-metric"
+            href={NPM}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${formatCount(metrics.npmDownloadsSinceLaunch)} npm downloads since StackBrief launched. View the package.`}
+          >
+            <strong>{formatCount(metrics.npmDownloadsSinceLaunch)}</strong>
+            <span>npm downloads since launch</span>
+          </a>
+        ) : null}
+      </div>
+      <p>Public repository metrics · refreshed hourly</p>
+    </div>
+  );
+}
+
+export default async function HomePage() {
+  const metrics = await getRepositoryMetrics();
+
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
@@ -38,6 +91,7 @@ export default function HomePage() {
                 <a className="button button-primary" href="#install">Start with the CLI <span aria-hidden="true">↓</span></a>
                 <a className="text-link" href={GITHUB} target="_blank" rel="noreferrer">Read the repository <ExternalArrow /></a>
               </div>
+              <HeroMetrics metrics={metrics} />
               <div className="hero-proof" aria-label="StackBrief principles"><span>Offline analysis</span><i /><span>Source-cited</span><i /><span>Agent-neutral</span></div>
             </div>
             <FieldMap />
