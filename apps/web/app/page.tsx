@@ -76,6 +76,7 @@ export default async function HomePage() {
             <a href="#why">Why it exists</a>
             <a href="#workflow">How it works</a>
             <a href="#demo">See it in motion</a>
+            <a href="/evaluate">Evaluate it</a>
             <a href="#origin">Origin</a>
           </nav>
           <a className="header-link" href={GITHUB} target="_blank" rel="noreferrer"><span>Star on GitHub</span><ExternalArrow /></a>
@@ -210,7 +211,7 @@ export default async function HomePage() {
           <section className="community-section" aria-labelledby="community-title">
             <div className="wrap community-layout">
               <div><p className="eyebrow">Make the map stronger</p><h2 id="community-title">If it earns a place in your workflow, leave a mark.</h2></div>
-              <div className="community-actions"><a className="button button-light" href={GITHUB} target="_blank" rel="noreferrer">Star the repository <ExternalArrow /></a><a className="button button-outline" href={NPM} target="_blank" rel="noreferrer">Review on npm <ExternalArrow /></a><p>Want to contribute a detector, framework adapter, or a better idea? Write to <a href="mailto:hello@mojeeb.xyz">hello@mojeeb.xyz</a>.</p></div>
+              <div className="community-actions"><a className="button button-light" href={GITHUB} target="_blank" rel="noreferrer">Star the repository <ExternalArrow /></a><a className="button button-outline" href="/evaluate">Evaluate the build <ExternalArrow /></a><a className="button button-outline" href={NPM} target="_blank" rel="noreferrer">Review on npm <ExternalArrow /></a><p>Want to contribute a detector, framework adapter, or a better idea? Write to <a href="mailto:hello@mojeeb.xyz">hello@mojeeb.xyz</a>.</p></div>
             </div>
           </section>
         </main>
@@ -219,7 +220,7 @@ export default async function HomePage() {
           <div className="wrap footer-top">
             <div><a className="brand footer-brand" href="#top"><BrandMark /><span>StackBrief</span></a><p>The architectural brief before a code change.</p></div>
             <div className="footer-links">
-              <div><p>Find it</p><a href={GITHUB} target="_blank" rel="noreferrer">GitHub</a><a href={NPM} target="_blank" rel="noreferrer">npm</a><a href="https://stackbrief.peerfix.dev" target="_blank" rel="noreferrer">Project home</a></div>
+              <div><p>Find it</p><a href={GITHUB} target="_blank" rel="noreferrer">GitHub</a><a href={NPM} target="_blank" rel="noreferrer">npm</a><a href="/evaluate">Evaluate StackBrief</a><a href="https://stackbrief.peerfix.dev" target="_blank" rel="noreferrer">Project home</a></div>
               <div><p>OpenAI ecosystem</p><a href="https://chatgpt.com" target="_blank" rel="noreferrer">ChatGPT</a><a href="https://openai.com/codex/" target="_blank" rel="noreferrer">Codex</a><a href="https://openai.com" target="_blank" rel="noreferrer">OpenAI</a><a href="https://devpost.com" target="_blank" rel="noreferrer">Devpost</a></div>
               <div><p>Founder</p><a href="https://blindspotlab.xyz" target="_blank" rel="noreferrer">BlindspotLab</a><a href="https://mojeeb.xyz" target="_blank" rel="noreferrer">mojeeb.xyz</a><a href={FOUNDER_X} target="_blank" rel="noreferrer">x.com/MojeebMotion</a></div>
             </div>

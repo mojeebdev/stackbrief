@@ -2,6 +2,8 @@
 
 > The architectural brief before a code change.
 
+**Evaluating StackBrief for Build Week?** Follow the [judge-ready evaluation guide](JUDGES.md) for a reproducible path from clone to scan to source-cited pre-change brief.
+
 [GitHub](https://github.com/mojeebdev/stackbrief) · [npm](https://www.npmjs.com/package/@blindspotlab/stackbrief) · [Project home](https://stackbrief.peerfix.dev) · [Launch post](https://x.com/MojeebMotion/status/2078447946782163291?s=20)
 
 StackBrief is an open-source, local-first CLI for understanding a repository before changing it. It turns observable source structure—files, imports, routes, services, databases, dependencies, and external APIs—into a concise architectural brief with file and line evidence.

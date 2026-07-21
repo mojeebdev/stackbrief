@@ -15,6 +15,10 @@ The hero can show two public, source-linked credibility signals: GitHub stars an
 
 The npm label deliberately says **downloads since launch**. npm's download endpoint reports a requested date range, so StackBrief does not present it as an ambiguous all-time total.
 
+## Evaluation page
+
+`/evaluate` is the public, readable companion to the repository's `JUDGES.md`. It gives a skeptical developer a short, reproducible evaluation path: clone, test, scan, and inspect a source-cited brief. Keep its claims consistent with the CLI and its static-analysis limits.
+
 ## Development
 
 ```bash

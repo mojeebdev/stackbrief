@@ -7,6 +7,8 @@ All notable changes to StackBrief are documented here.
 ### Added
 
 - The product website hero now displays public, source-linked GitHub stars and npm downloads since StackBrief launched. Metrics refresh hourly, remain token-free, and disappear individually rather than making the page fail when a provider is unavailable.
+- Added a judge-ready, reproducible evaluation guide for the Build Week submission.
+- Added a public `/evaluate` page that turns the guide into an accessible, source-linked website workflow.
 
 ## 1.1.2 — 2026-07-18
 
